@@ -1,0 +1,18 @@
+async function fetchRates() {
+    // REEMPLAZA ESTO CON TU USUARIO Y NOMBRE DE REPOSITORIO
+    const url = "https://raw.githubusercontent.com/TU_USUARIO/monitor-vzvla/main/data.json";
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        document.getElementById('dolar-bcv').innerText = `Bs. ${data.monedas.dolar_bcv}`;
+        document.getElementById('euro-bcv').innerText = `Bs. ${data.monedas.euro_bcv}`;
+        document.getElementById('binance-p2p').innerText = `Bs. ${data.monedas.binance_usdt}`;
+        document.getElementById('last-update').innerText = "Actualizado: " + data.datetime;
+        
+    } catch (error) {
+        console.error("Error al obtener tasas", error);
+        document.getElementById('last-update').innerText = "Error cargando datos.";
+    }
+}
